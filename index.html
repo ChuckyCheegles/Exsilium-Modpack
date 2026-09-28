@@ -5,39 +5,154 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Install Exsilium</title>
   <style>
-    :root { --bg: #1a1a1a; --card: #262626; --accent: #1bd96a; --text: #e0e0e0; --muted: #999; }
+    :root {
+      --bg: #1a1a1a;
+      --card: #262626;
+      --accent: #1bd96a;
+      --text: #e0e0e0;
+      --muted: #999;
+      --discord: #5865F2;
+    }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 1rem; text-align: center; }
-    .card { background: var(--card); border-radius: 16px; padding: 2.5rem; max-width: 480px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+      text-align: center;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 520px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
     h1 { margin: 0 0 0.25rem; font-size: 1.75rem; }
-    .subtitle { color: var(--muted); margin: 0 0 1.75rem; font-size: 1rem; line-height: 1.5; }
-    .btn { display: inline-block; background: var(--accent); color: #062818; text-decoration: none; font-weight: 700; padding: 0.9rem 1.8rem; border-radius: 10px; font-size: 1rem; border: none; cursor: pointer; transition: transform .06s ease, opacity .2s ease; }
+    .subtitle { color: var(--muted); margin: 0 0 1.5rem; font-size: 1rem; line-height: 1.5; }
+    
+    .status {
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+      color: var(--accent);
+      min-height: 1.4em;
+      font-weight: 600;
+    }
+    
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #062818;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 0.9rem 1.6rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: transform .06s ease, opacity .2s ease;
+    }
     .btn:hover { transform: translateY(-1px); opacity: .92; }
-    .btn-secondary { display: inline-block; margin-top: 1rem; color: var(--muted); font-size: .9rem; }
-    .btn-secondary a { color: var(--accent); }
-    .hint { margin-top: 1.5rem; font-size: .8rem; color: #777; }
-    ol.instructions { text-align: left; color: var(--muted); font-size: 0.9rem; margin: 1.5rem 0 0; padding-left: 1.2rem; }
+    
+    .btn-discord {
+      background: var(--discord);
+      color: #fff;
+    }
+    
+    ol.instructions {
+      text-align: left;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0 0 1.5rem;
+      padding-left: 1.2rem;
+      line-height: 1.5;
+    }
     ol.instructions li { margin-bottom: 0.5rem; }
+    ol.instructions code {
+      background: #333;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+    
+    .links {
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid #333;
+      font-size: 0.85rem;
+      color: #777;
+    }
+    .links a {
+      color: var(--accent);
+      text-decoration: none;
+      margin: 0 0.4rem;
+    }
+    .links a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
   <div class="card">
     <h1>Exsilium</h1>
     <div class="subtitle">
-      Download the modpack and import it into the Modrinth App.
+      One-click download. Double-click to install.
     </div>
     
-    <!-- Direct download from your Nextcloud -->
-    <a href="https://homelab-cloud.dangerousmc.win/s/d7CFdfoySmiX7eR/download" class="btn" download="exsilium.mrpack">Download .mrpack</a>
+    <div class="status" id="status">Starting download…</div>
+    
+    <div class="btn-row">
+      <a href="https://homelab-cloud.dangerousmc.win/s/d7CFdfoySmiX7eR/download" class="btn" download="Exsilium Creates 1.2.0.mrpack" id="dlBtn">Download Again</a>
+      <a href="https://discord.com/invite/bbqGVzGfYv" class="btn btn-discord" target="_blank" rel="noopener">Join Discord</a>
+    </div>
     
     <ol class="instructions">
-      <li>Click the button above to download the file.</li>
-      <li>Open the <strong>Modrinth App</strong>.</li>
-      <li>Click <strong>Create Instance</strong> → <strong>Import from file</strong>.</li>
-      <li>Select the downloaded <code>.mrpack</code> file.</li>
+      <li>The <code>Exsilium Creates 1.2.0.mrpack</code> file will download automatically.</li>
+      <li>Double-click the downloaded file to open it in the Modrinth App.</li>
+      <li>If the Modrinth App doesn't open, use <strong>Create Instance → Import from file</strong> instead.</li>
     </ol>
     
-    <div class="hint">The Modrinth auto-install is currently unavailable due to a version error.</div>
+    <div class="links">
+      <a href="https://github.com/ChuckyCheegles/Exsilium-Modpack" target="_blank" rel="noopener">GitHub Repo</a> •
+      <a href="https://chuckycheegles.github.io/Exsilium-Modpack/" target="_blank" rel="noopener">Website</a> •
+      <a href="https://homelab-cloud.dangerousmc.win/s/d7CFdfoySmiX7eR/download" download="Exsilium Creates 1.2.0.mrpack">Direct Download</a> •
+      <a href="https://discord.com/invite/bbqGVzGfYv" target="_blank" rel="noopener">Discord</a>
+    </div>
   </div>
+
+  <script>
+    const DOWNLOAD_URL = "https://homelab-cloud.dangerousmc.win/s/d7CFdfoySmiX7eR/download";
+    const status = document.getElementById('status');
+
+    function startDownload() {
+      const a = document.createElement('a');
+      a.href = DOWNLOAD_URL;
+      a.download = "Exsilium Creates 1.2.0.mrpack";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      
+      status.textContent = "Download started! Check your downloads folder.";
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(startDownload, 300);
+    });
+
+    document.getElementById('dlBtn').addEventListener('click', () => {
+      status.textContent = "Download started! Check your downloads folder.";
+    });
+  </script>
 </body>
 </html>
