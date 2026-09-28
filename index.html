@@ -1,121 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Install Exsilium</title>
-    <style>
-        :root {
-            --bg: #1a1a1a;
-            --card: #262626;
-            --accent: #1bd96a;
-            --text: #e0e0e0;
-            --muted: #999;
-            --danger: #ff6b6b;
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 1rem;
-            text-align: center;
-        }
-        .card {
-            background: var(--card);
-            border-radius: 16px;
-            padding: 2.5rem;
-            max-width: 480px;
-            width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-        }
-        h1 { margin: 0 0 0.25rem; font-size: 1.75rem; }
-        .subtitle { color: var(--muted); margin: 0 0 1.75rem; font-size: 1rem; line-height: 1.5; }
-        .btn {
-            display: inline-block;
-            background: var(--accent);
-            color: #062818;
-            text-decoration: none;
-            font-weight: 700;
-            padding: 0.9rem 1.8rem;
-            border-radius: 10px;
-            font-size: 1rem;
-            border: none;
-            cursor: pointer;
-            transition: transform .06s ease, opacity .2s ease;
-        }
-        .btn:hover { transform: translateY(-1px); opacity: .92; }
-        .btn-secondary {
-            display: inline-block;
-            margin-top: 1rem;
-            color: var(--muted);
-            font-size: .9rem;
-        }
-        .btn-secondary a { color: var(--accent); text-decoration: underline; }
-        .hint {
-            margin-top: 1.5rem;
-            font-size: .8rem;
-            color: #777;
-        }
-        #status {
-            margin-top: 1rem;
-            font-size: .85rem;
-            min-height: 1.2em;
-            color: var(--muted);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Install Exsilium</title>
+  <style>
+    :root { --bg: #1a1a1a; --card: #262626; --accent: #1bd96a; --text: #e0e0e0; --muted: #999; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 1rem; text-align: center; }
+    .card { background: var(--card); border-radius: 16px; padding: 2.5rem; max-width: 480px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    h1 { margin: 0 0 0.25rem; font-size: 1.75rem; }
+    .subtitle { color: var(--muted); margin: 0 0 1.75rem; font-size: 1rem; line-height: 1.5; }
+    .btn { display: inline-block; background: var(--accent); color: #062818; text-decoration: none; font-weight: 700; padding: 0.9rem 1.8rem; border-radius: 10px; font-size: 1rem; border: none; cursor: pointer; transition: transform .06s ease, opacity .2s ease; }
+    .btn:hover { transform: translateY(-1px); opacity: .92; }
+    .btn-secondary { display: inline-block; margin-top: 1rem; color: var(--muted); font-size: .9rem; }
+    .btn-secondary a { color: var(--accent); }
+    .hint { margin-top: 1.5rem; font-size: .8rem; color: #777; }
+    ol.instructions { text-align: left; color: var(--muted); font-size: 0.9rem; margin: 1.5rem 0 0; padding-left: 1.2rem; }
+    ol.instructions li { margin-bottom: 0.5rem; }
+  </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Exsilium</h1>
-        <div class="subtitle">
-            One-click install via the Modrinth App.<br>
-            If nothing happens, click the button below.
-        </div>
-
-        <button id="installBtn" class="btn">Open in Modrinth App</button>
-
-        <div id="status"></div>
-
-        <div class="btn-secondary">
-            Or <a href="https://modrinth.com/modpack/exsilium-modpack" target="_blank" rel="noopener">view on Modrinth</a>
-        </div>
-
-        <div class="hint">Requires the Modrinth App to be installed.</div>
+  <div class="card">
+    <h1>Exsilium</h1>
+    <div class="subtitle">
+      Download the modpack and import it into the Modrinth App.
     </div>
-
-    <script>
-        const PROTOCOL_URL = "modrinth://modpack/exsilium-modpack";
-        const FALLBACK_URL = "https://modrinth.com/modpack/exsilium-modpack";
-        const btn = document.getElementById('installBtn');
-        const status = document.getElementById('status');
-
-        function triggerInstall() {
-            // Set status text for UX
-            status.textContent = "Launching Modrinth App…";
-
-            // Attempt to open the Modrinth protocol handler
-            window.location.href = PROTOCOL_URL;
-
-            // If the app isn't installed, the user will stay on the page.
-            // After a short delay, offer the fallback.
-            setTimeout(() => {
-                status.innerHTML = 'Nothing opened? <a href="' + FALLBACK_URL + '" target="_blank" rel="noopener" style="color:var(--accent);">Install manually on Modrinth</a>.';
-            }, 4000);
-        }
-
-        // Auto-attempt on page load (may be blocked by some browsers without user gesture)
-        window.addEventListener('DOMContentLoaded', () => {
-            triggerInstall();
-        });
-
-        // Also bind to the button for a manual retry
-        btn.addEventListener('click', triggerInstall);
-    </script>
+    
+    <!-- Direct download from your Nextcloud -->
+    <a href="https://homelab-cloud.dangerousmc.win/s/d7CFdfoySmiX7eR/download" class="btn" download="exsilium.mrpack">Download .mrpack</a>
+    
+    <ol class="instructions">
+      <li>Click the button above to download the file.</li>
+      <li>Open the <strong>Modrinth App</strong>.</li>
+      <li>Click <strong>Create Instance</strong> → <strong>Import from file</strong>.</li>
+      <li>Select the downloaded <code>.mrpack</code> file.</li>
+    </ol>
+    
+    <div class="hint">The Modrinth auto-install is currently unavailable due to a version error.</div>
+  </div>
 </body>
 </html>
